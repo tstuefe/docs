@@ -2,7 +2,7 @@
 
 This is a short description of how I build OpenJDK on Windows, as of today (2018-06-28).
 
-_Disclaimer: This describes the setup I have worked with and know will work. Many more variants - different toolchains, windows versions, Visual Studio versions - may and probably will work too but are outside the scope of this document._
+_Disclaimer: This setup I have worked with and know it will work. Other variants - different toolchains, Windows versions, Visual Studio versions - may and probably will work too but are outside the scope of this document._
 
 ### Prerequisites
 
@@ -53,15 +53,16 @@ openjdk
                |--output-fastdebug-32
                .....
 ```
+It is of course fine to use another layout - just make the mental adjustments while reading this document.
 
 ### Get build jdk
 
 To build the jdk, we need a jdk. To build OpenJDK 11, we need JDK 10. 
 
-For Linux, one has a number of options beside the official Oracle JDK binaries, among others https://sap.github.io/ or https://adoptopenjdk.net/.
-
-However, at the time of this writing, the only way to get a JDK 10 for Windows is to download the official oracle JDK:
+At the time of this writing, the only way to get a JDK 10 for Windows is to download the official oracle JDK:
  - http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html
+
+(_For Linux, one has a number of options beside the official Oracle JDK binaries, among others https://sap.github.io/ or https://adoptopenjdk.net/. But they are not there yet for Windows._)
 
 Put the downloaded and extracted JDK into openjdk/jdks.
 
@@ -77,16 +78,25 @@ Open a cygwin shell, and in the parent directory of the future source folder, ca
 hg clone http://hg.openjdk.java.net/jdk/jdk/
 ````
 
-Unfortunately this may lag since download speed from mercurial servers at openjdk.java.net is limited. In Europe, cloning a full repository takes ~40 minutes. On Windows, this process is also plagued by timeout errors.
+Unfortunately mercurial servers at openjdk.java.net are slow. In Europe, cloning a full repository takes ~40 minutes. On Windows, this process is also plagued by timeout errors.
 
+To follow my layout scheme, I rename the jdk to "source":
+````
+mv jdk source
+````
+
+Once this is done, it may be a good idea to create a tarball from the .hg folder in case you need to resurrect the unmodified sources:
+
+````
+cd source
+tar -czf ../jdk-source.tar .hg
+````
 
 #### The _faster_ alternative: copy sources and update
 
 A faster alternative is to copy the repository from somewhere else and just update it. There are many ways to get a copy of the repository. One popular way is to download the source tarballs from: https://builds.shipilev.net/workspaces . 
 
 These tarballs are maintained by _Aleksey Shipilev_ from Red Hat, thanks to him for this big time saver.
-
-Aleksey's tarballs only contain the .hg folder, not the workspace. So you need to extract it and run hg update on them:
 
 ```
 mkdir /cygdrive/c/openjdk/jdk-jdk
@@ -98,6 +108,13 @@ cd source
 hg pull
 hg update
 ```
+
+It is a good idea to keep Alekseys tarball around. Even if the tarball is weeks old, it is still faster to extract it and pull updates instead of re-cloning the whole directory.
+
+#### Resurrecting the sources
+
+If you later want to restore the sources from scratch, extract the source tarball and restore the repository using `hg update`, then pull changes using `hg pull -u`. 
+
 
 ### Build
 
@@ -120,7 +137,7 @@ Release:
 bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/openjdk10 --with-debug-level=release
 ```
 
-Then run make:
+Run make:
 ```
 make images
 ```
