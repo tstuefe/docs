@@ -72,13 +72,12 @@ Put the downloaded and extracted JDK into openjdk/jdks.
 
 The standard way to get the sources is to clone the corresponding mercurial repository from hg.openjdk.java.net.
 
-Open a cygwin shell, and in the parent directory of the future source folder, call:
+Open a cygwin shell:
 
 ````
+cd openjdk/jdk-jdk
 hg clone http://hg.openjdk.java.net/jdk/jdk/
 ````
-
-Unfortunately mercurial servers at openjdk.java.net are slow. In Europe, cloning a full repository takes ~40 minutes. On Windows, this process is also plagued by timeout errors.
 
 To follow my layout scheme, I rename the jdk to "source":
 ````
@@ -92,6 +91,8 @@ cd source
 tar -czf ../jdk-source.tar .hg
 ````
 
+Unfortunately mercurial servers at openjdk.java.net are slow. In Europe, cloning a full repository takes ~40 minutes. On Windows, this process is also plagued by timeout errors.
+
 #### The _faster_ alternative: copy sources and update
 
 A faster alternative is to copy the repository from somewhere else and just update it. There are many ways to get a copy of the repository. One popular way is to download the source tarballs from: https://builds.shipilev.net/workspaces . 
@@ -99,8 +100,7 @@ A faster alternative is to copy the repository from somewhere else and just upda
 These tarballs are maintained by _Aleksey Shipilev_ from Red Hat, thanks to him for this big time saver.
 
 ```
-mkdir /cygdrive/c/openjdk/jdk-jdk
-cd /cygdrive/c/openjdk/jdk-jdk
+cd openjdk/jdk-jdk
 wget https://builds.shipilev.net/workspaces/jdk-jdk.tar.xz
 tar -xf jdk-jdk.tar.xz
 mv jdk source        (note: rename folder to "source")
