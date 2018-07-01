@@ -103,7 +103,7 @@ These tarballs are maintained by _Aleksey Shipilev_ from Red Hat, thanks to him 
 cd openjdk/jdk-jdk
 wget https://builds.shipilev.net/workspaces/jdk-jdk.tar.xz
 tar -xf jdk-jdk.tar.xz
-mv jdk source        (note: rename folder to "source")
+mv jdk-jdk source        (note: rename folder to "source")
 cd source
 hg pull
 hg update
