@@ -121,20 +121,20 @@ If you later want to restore the sources from scratch, extract the source tarbal
 Open the cygwin shell. Create output directory:
 
 ```
-mkdir /cygdrive/c/openjdk/jdk-jdk/output
-cd /cygdrive/c/openjdk/jdk-jdk/output
+mkdir openjdk/jdk-jdk/output
+cd openjdk/jdk-jdk/output
 ```
 
 Run configure:
 
 Fastdebug:
 ```
-bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/openjdk10 --with-debug-level=fastdebug
+bash ../source/configure --with-boot-jdk=../../jdks/jdk10 --with-debug-level=fastdebug
 ```
 
 Release:
 ```
-bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/openjdk10 --with-debug-level=release
+bash ../source/configure --with-boot-jdk=../../jdks/jdk10 --with-debug-level=release
 ```
 
 Run make:
