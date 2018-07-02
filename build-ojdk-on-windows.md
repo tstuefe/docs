@@ -144,7 +144,7 @@ Run make:
 make images
 ```
 
-### Tips
+### Tips and Tricks
 
 Re-run configure and rebuild from scratch without having to reissue the configure command:
 
@@ -172,6 +172,17 @@ Check which configure options a build was built with:
 ```
 grep CONFIGURE_COMMAND spec.gmk
 ```
+
+Speed up builds: During builds, the JDK being created is already used - to run jmod, jlink and other tools which need a close knowledge if the specific source tree and level to work correctly.
+
+But this means that if you build naturally slow JDK variants (e.g. zero and slowdebug), the build itself can become slow. To counter that, one can specify a separate build JDK which is used instead of the just-built JDK. 
+
+```
+--with-build-jdk=<path to hopefully fast build jdk>
+```
+
+**Warning: In contrast to the boot jdk, this JDK has to be close to the sources!** A good practice would be to use a release build of the same source tree and source level.
+
 
 
 
