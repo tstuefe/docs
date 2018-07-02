@@ -129,13 +129,15 @@ Run configure:
 
 Fastdebug:
 ```
-bash ../source/configure --with-boot-jdk=../../jdks/jdk10 --with-debug-level=fastdebug
+bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/jdk10 --with-debug-level=fastdebug
 ```
 
 Release:
 ```
-bash ../source/configure --with-boot-jdk=../../jdks/jdk10 --with-debug-level=release
+bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/jdk10 --with-debug-level=release
 ```
+
+_(Note: boot jdk path has to be absolute do to a [bug](https://bugs.openjdk.java.net/browse/JDK-8206125) in configure.)_
 
 Run make:
 ```
