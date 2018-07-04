@@ -137,7 +137,7 @@ Release:
 bash ../source/configure --with-boot-jdk=/cygdrive/c/openjdk/jdks/jdk10 --with-debug-level=release
 ```
 
-_(Note: boot jdk path has to be absolute do to a [bug](https://bugs.openjdk.java.net/browse/JDK-8206125) in configure.)_
+_(Note: boot jdk path has to be absolute due to a [bug](https://bugs.openjdk.java.net/browse/JDK-8206125) in configure.)_
 
 Run make:
 ```
@@ -173,7 +173,7 @@ Check which configure options a build was built with:
 grep CONFIGURE_COMMAND spec.gmk
 ```
 
-Speed up builds: During builds, the JDK being created is already used - to run jmod, jlink and other tools which need a close knowledge if the specific source tree and level to work correctly.
+Speed up builds: During builds, the JDK being created is also used - to run jmod.exe, jlink.exe and other tools which need a close knowledge of the JDK source level to work correctly.
 
 But this means that if you build naturally slow JDK variants (e.g. zero and slowdebug), the build itself can become slow. To counter that, one can specify a separate build JDK which is used instead of the just-built JDK. 
 
