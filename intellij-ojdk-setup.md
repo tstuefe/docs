@@ -2,6 +2,8 @@
 
 This document describes how I set up Intellij for OpenJDK. Note that I mainly work on Linux and have not tested this on other platforms. I assume this works the same way anywhere but no guarantees.
 
+_Update_2018-11-09_: With JDK-8213591, I confirmend this works also on Windows.
+
 ## Run the generator script
 
 You need the OpenJDK sources cloned and an OpenJDK freshly built. I usually use a fastdebug build for that - not sure if that makes any difference.
